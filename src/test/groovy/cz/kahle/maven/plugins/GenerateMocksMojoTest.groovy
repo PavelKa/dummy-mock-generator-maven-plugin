@@ -1,4 +1,4 @@
-package cz.kahle.jenkins
+package cz.kahle.maven.plugins
 
 import org.apache.maven.project.MavenProject
 import spock.lang.Specification

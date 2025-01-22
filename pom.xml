@@ -2,12 +2,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>cz.kahle.jenkins</groupId>
-  <artifactId>dummy-mock</artifactId>
+  <groupId>cz.kahle.maven.plugins</groupId>
+  <artifactId>maven-dummy-mock-generator-plugin</artifactId>
   <version>1.0.1-SNAPSHOT</version>
   <packaging>maven-plugin</packaging>
 
-  <name>jenkins-steps-mock Maven Plugin</name>
+  <name>dummy-mock-generator Maven Plugin</name>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -67,7 +67,7 @@
         <artifactId>maven-plugin-plugin</artifactId>
         <version>3.6.1</version>
         <configuration>
-          <goalPrefix>jenkins-steps-mock</goalPrefix>
+          <goalPrefix>dummy-mock-generator</goalPrefix>
           <skipErrorNoDescriptorsFound>true</skipErrorNoDescriptorsFound>
         </configuration>
         <executions>

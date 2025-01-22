@@ -40,9 +40,9 @@
     <plugins>
 
       <plugin>
-        <groupId>cz.kahle.jenkins</groupId>
-        <artifactId>jenkins-steps-mock</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <groupId>cz.kahle.maven.plugins</groupId>
+        <artifactId>maven-dummy-mock-generator-plugin</artifactId>
+        <version>1.0.1-SNAPSHOT</version>
         <executions>
           <execution>
             <id>generate-gdsl</id>

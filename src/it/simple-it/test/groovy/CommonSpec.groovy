@@ -1,3 +1,4 @@
+import org.example.it.mocks.RbrLogMock
 import spock.lang.Specification
 
 class CommonSpec extends Specification {

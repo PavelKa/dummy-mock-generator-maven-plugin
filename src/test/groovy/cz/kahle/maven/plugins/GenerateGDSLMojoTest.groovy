@@ -1,6 +1,5 @@
-package cz.kahle.jenkins
+package cz.kahle.maven.plugins
 
-import org.apache.maven.model.Dependency
 import org.apache.maven.plugin.MojoExecutionException
 import org.apache.maven.project.MavenProject
 

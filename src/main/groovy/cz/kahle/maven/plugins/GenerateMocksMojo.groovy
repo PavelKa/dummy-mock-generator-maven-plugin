@@ -1,4 +1,4 @@
-package cz.kahle.jenkins
+package cz.kahle.maven.plugins
 
 import groovy.io.FileType
 import org.apache.maven.plugin.AbstractMojo
@@ -39,7 +39,7 @@ class GenerateMocksMojo extends AbstractMojo {
             getLog().info("Processing file: ${gdslFile.getAbsolutePath()}")
             def mockObjects = evaluateGDSL(gdslFile.text)
             def generatedMocks = generateMocks(mockObjects)
-            storeMocksTofiles(outputDirectory, mockPackage, generatedMocks)
+            storeMocksTofiles(outputDirectory,  generatedMocks)
 
         }
 
@@ -167,7 +167,7 @@ class GenerateMocksMojo extends AbstractMojo {
             return
         }
         shellMetaClass.parameter = { map ->
-            getLog().debug("parameter called map:$map");
+            getLog().debug("parameter called map:$map")
             map
         }
         shellMetaClass.property = { map -> getLog().debug("property called map:$map"); map }
@@ -190,7 +190,7 @@ class GenerateMocksMojo extends AbstractMojo {
         }
     }
 
-    void storeMocksTofiles(File outputDirectory, String mockPackage, Map<String, String> mocksClasses) {
+    void storeMocksTofiles(File outputDirectory, Map<String, String> mocksClasses) {
         def packagePath = mockPackage.replace('.', File.separator)
         def mockDir = new File(outputDirectory, packagePath)
         mockDir.mkdirs()

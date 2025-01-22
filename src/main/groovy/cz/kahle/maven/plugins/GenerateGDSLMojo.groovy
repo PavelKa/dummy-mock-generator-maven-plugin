@@ -1,4 +1,4 @@
-package cz.kahle.jenkins
+package cz.kahle.maven.plugins
 
 import groovy.io.FileType
 import org.apache.maven.plugin.AbstractMojo
@@ -23,7 +23,7 @@ class GenerateGDSLMojo extends AbstractMojo {
     /**
      * Location od a directory where groovy from which GDSL will be generated are stored.
      */
-    @Parameter(defaultValue = '${project.basedir}/vars', property = 'outputDir', required = true)
+    @Parameter(defaultValue = '${project.basedir}/vars', property = 'sourceDir', required = true)
     private File sourceDirectory
 
     void execute() throws MojoExecutionException {
