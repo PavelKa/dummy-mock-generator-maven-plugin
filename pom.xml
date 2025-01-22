@@ -6,8 +6,39 @@
   <artifactId>dummy-mock-generator-maven-plugin</artifactId>
   <version>1.0.3-SNAPSHOT</version>
   <packaging>maven-plugin</packaging>
-
   <name>dummy-mock-generator Maven Plugin</name>
+  <description>This plugin is designed to generate dummy mocks from gdsl files for testing purposes. </description>
+  <url>https://github.com/PavelKa/dummy-mock-generator-maven-plugin/</url>
+  <developers>
+    <developer>
+      <name>Pavel Kahle</name>
+    </developer>
+  </developers>
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+      <comments>A business-friendly OSS license</comments>
+    </license>
+  </licenses>
+  <distributionManagement>
+    <snapshotRepository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+    <repository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/
+      </url>
+    </repository>
+  </distributionManagement>
+  <scm>
+    <connection>scm:git:git://github.com/PavelKa/dummy-mock-generator-maven-plugin.git</connection>
+    <developerConnection>scm:git:git@github.com:PavelKa:dummy-mock-generator-maven-plugin.git</developerConnection>
+    <url>https://github.com/PavelKa/dummy-mock-generator-maven-plugin</url>
+    <tag>HEAD</tag>
+  </scm>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
