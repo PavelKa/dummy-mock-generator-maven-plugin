@@ -1,0 +1,3 @@
+def info() {
+    echo "INFO"
+}

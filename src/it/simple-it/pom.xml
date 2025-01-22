@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.example.it</groupId>
+  <artifactId>simple-it</artifactId>
+  <version>1.0-1-SNAPSHOT</version>
+
+  <description>A simple IT verifying the basic use case.</description>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <mockito.version>3.9.0</mockito.version>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.codehaus.groovy</groupId>
+      <artifactId>groovy-all</artifactId>
+      <version>2.5.14</version>
+      <type>pom</type>
+    </dependency>
+    <dependency>
+      <groupId>org.spockframework</groupId>
+      <artifactId>spock-core</artifactId>
+      <version>2.4-M3-groovy-2.5</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <version>${mockito.version}</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+  <build>
+    <plugins>
+
+      <plugin>
+        <groupId>cz.kahle.jenkins</groupId>
+        <artifactId>jenkins-steps-mock</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <executions>
+          <execution>
+            <id>generate-gdsl</id>
+            <phase>generate-test-sources</phase>
+            <goals>
+              <goal>generate-gdsl</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.basedir}/src</outputDirectory>
+            </configuration>
+          </execution>
+          <execution>
+            <id>generate-mocks</id>
+            <phase>generate-test-sources</phase>
+            <goals>
+              <goal>generate-mocks</goal>
+            </goals>
+          </execution>
+
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.gmavenplus</groupId>
+        <artifactId>gmavenplus-plugin</artifactId>
+        <version>4.0.1</version>
+        <executions>
+          <execution>
+            <id>groovy</id>
+            <goals>
+              <goal>addSources</goal>
+              <goal>addTestSources</goal>
+              <goal>generateStubs</goal>
+              <goal>generateTestStubs</goal>
+              <goal>compile</goal>
+              <goal>compileTests</goal>
+              <goal>removeStubs</goal>
+              <goal>removeTestStubs</goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>
+                  <directory>src</directory>
+                  <includes>
+                    <include>**/*.groovy</include>
+                  </includes>
+                  <excludes>
+                    <exclude>src/main/java/**</exclude>
+                  </excludes>
+                </source>
+
+                <source>
+                  <directory>vars</directory>
+                  <includes>
+                    <include>**/*.groovy</include>
+                  </includes>
+
+                </source>
+              </sources>
+              <testSources>
+                <testSource>
+                  <directory>${project.basedir}/test/groovy</directory>
+                  <includes>
+                    <include>**/*.groovy</include>
+                  </includes>
+                </testSource>
+                <testSource>
+                  <directory>${project.basedir}/target/generated-test-sources</directory>
+                  <includes>
+                    <include>**/*.groovy</include>
+                  </includes>
+                </testSource>
+              </testSources>
+
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.0.0-M7</version>
+        <executions>
+          <execution>
+            <id>default-test</id>
+            <goals>
+              <goal>test</goal>
+            </goals>
+            <configuration>
+              <testSourceDirectory>test/groovy</testSourceDirectory>
+              <includes>
+                <include>**/*Spec</include>
+              </includes>
+              <useManifestOnlyJar>false</useManifestOnlyJar>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+
+  </build>
+</project>

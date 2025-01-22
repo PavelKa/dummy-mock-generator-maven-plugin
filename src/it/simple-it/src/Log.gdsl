@@ -1,0 +1,4 @@
+def ctxLog = context(ctype: 'Log')
+contributor(ctxLog) {
+  method(name: 'info', type: 'Object', params: [message:'java.lang.String'], doc: 'Generated method from vars directory')
+}

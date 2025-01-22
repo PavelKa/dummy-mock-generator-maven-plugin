@@ -1,0 +1,5 @@
+def ctx = context(scope: scriptScope())
+contributor(ctx) {
+    method(name: 'parallel', type: 'Object', params: ['closures': 'java.util.Map'], doc: 'Execute in parallel')
+    method(name: 'parallel', type: 'Object', namedParams: [parameter(name: 'closures', type: 'java.util.Map'), parameter(name: 'failFast', type: 'boolean'),], doc: 'Execute in parallel')
+}
