@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>cz.kahle.maven.plugins</groupId>
-  <artifactId>maven-dummy-mock-generator-plugin</artifactId>
+  <artifactId>dummy-mock-generator-maven-plugin</artifactId>
   <version>1.0.1-SNAPSHOT</version>
   <packaging>maven-plugin</packaging>
 

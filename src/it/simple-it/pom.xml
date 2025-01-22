@@ -41,7 +41,7 @@
 
       <plugin>
         <groupId>cz.kahle.maven.plugins</groupId>
-        <artifactId>maven-dummy-mock-generator-plugin</artifactId>
+        <artifactId>dummy-mock-generator-maven-plugin</artifactId>
         <version>1.0.1-SNAPSHOT</version>
         <executions>
           <execution>
