@@ -142,7 +142,7 @@
                         <!-- Forward compatibility: "release-profile" will be removed from super POM.
                              It's better to define javadocs, sources, signing, etc. in an independent "release" profile. -->
                         <useReleaseProfile>false</useReleaseProfile>
-                        <releaseProfiles>release, gpg-maven-central</releaseProfiles>
+                        <releaseProfiles>release</releaseProfiles>
                     </configuration>
                 </plugin>
                 <plugin>
