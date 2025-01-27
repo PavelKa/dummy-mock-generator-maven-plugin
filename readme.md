@@ -36,6 +36,9 @@ To configure the `dummy-mock-generator` Maven Plugin, add the following to your 
 ```
 
 Replace the version with the appropriate version of the plugin you are using.
+Download http://(yourjenkinsurl)/job/(yourpipelinejob)/pipeline-syntax/gdsl file and save   to src folder.
+If some jenkins steps are missing in the file, you can add them manually to the new file.
+
 
 ## Usage
 Jenkins Global variables are called using  fileName.metodName reference. The file is compiled as a class with the same name, so when called outside Jenkins, it is assumed that the method is static. Therefore, it is necessary to dynamically add a static method to the class and then add the call to the mocked method within it.
