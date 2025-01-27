@@ -1,6 +1,0 @@
-def ctxlog = context(ctype: 'log')
-contributor(ctxlog) {
-  method(name: 'info', type: 'Object', params: [message:'java.lang.String'], doc: 'Generated method from vars directory')
-  method(name: 'methodMissing', type: 'Object', params: [name:'java.lang.String', args:'java.lang.Object'], doc: 'Generated method from vars directory')
-  method(name: '$static_propertyMissing', type: 'Object', params: [name:'java.lang.String'], doc: 'Generated method from vars directory')
-}

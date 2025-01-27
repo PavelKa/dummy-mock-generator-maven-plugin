@@ -1,0 +1,7 @@
+//The global script scope
+def ctx = context(scope: scriptScope())
+contributor(ctx) {
+    method(name: 'echo', type: 'Object', params: [message: 'java.lang.String'], doc: 'Print Message')
+}
+
+

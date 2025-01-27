@@ -1,4 +1,0 @@
-def ctxCommon = context(ctype: 'Common')
-contributor(ctxCommon) {
-  method(name: 'simplePipeline', type: 'Object', params: [], doc: 'Generated method from vars directory')
-}

@@ -191,11 +191,13 @@ class GenerateMocksMojo extends AbstractMojo {
     }
 
     void storeMocksTofiles(File outputDirectory, Map<String, String> mocksClasses) {
+
         def packagePath = mockPackage.replace('.', File.separator)
         def mockDir = new File(outputDirectory, packagePath)
         mockDir.mkdirs()
         mocksClasses.each { className, mockObject ->
             def mockFile = new File(mockDir, className)
+            getLog().info("Creating mock file: ${mockFile.absolutePath}")
             mockFile.text = mockObject
         }
     }

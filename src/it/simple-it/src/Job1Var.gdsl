@@ -1,4 +1,0 @@
-def ctxJob1Var = context(ctype: 'Job1Var')
-contributor(ctxJob1Var) {
-  method(name: 'call', type: 'Object', params: [], doc: 'Generated method from vars directory')
-}

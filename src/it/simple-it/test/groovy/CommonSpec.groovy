@@ -1,19 +1,20 @@
-import org.example.it.mocks.RbrLogMock
+import org.example.it.mocks.MyLogMock
 import spock.lang.Specification
 
 class CommonSpec extends Specification {
-
-    def "log should be called"() {
+    def "example test using generated MyLogMock and verifies if method myLog.info was called and println in mock called"() {
         given:
-        // global vrable pouzivaji pro volání jinych global variables  nazev souboru, soubor je kompilovan jako trida se stejnym nazvem, potom se pri volani predpoklada, ze metoda je staticka,
-        // proto je nutne dynamicky pridat statickou metodu do tridy a v ni pak pridat volai mockovane metody
-        def rbrLogClass = Class.forName('rbrLog')
-        def rbrLogMock = GroovyMock(RbrLogMock)
-        rbrLogClass.metaClass.static.info = { rbrLogMock.info(it) }
-        def commonToTest = new Common()
+        def myLogMock = GroovySpy(MyLogMock)
+        def myLogClass = Class.forName('myLog')
+
+        myLogClass.metaClass.static.info = myLogMock.&info
+        def commonToTest = Class.forName('myCommon').getDeclaredConstructor().newInstance()
         when:
         commonToTest.simplePipeline()
         then:
-        1 * rbrLogMock.info('Log from simplePipeline')
+        1 * myLogMock.info('Log from simplePipeline')
+        1 * myLogMock.println('Mock for myLog.info called with parameters:  (message: Log from simplePipeline)')
+        cleanup:
+        GroovySystem.metaClassRegistry.removeMetaClass(myLogClass)
     }
 }

@@ -5,7 +5,7 @@
 
   <groupId>org.example.it</groupId>
   <artifactId>simple-it</artifactId>
-  <version>1.0-1-SNAPSHOT</version>
+  <version>1.0-14-SNAPSHOT</version>
 
   <description>A simple IT verifying the basic use case.</description>
 
@@ -42,7 +42,7 @@
       <plugin>
         <groupId>cz.kahle.maven.plugins</groupId>
         <artifactId>dummy-mock-generator-maven-plugin</artifactId>
-        <version>1.0.1-SNAPSHOT</version>
+        <version>1.0.14-SNAPSHOT</version>
         <executions>
           <execution>
             <id>generate-gdsl</id>
