@@ -2,7 +2,7 @@
 
 ## Overview
 
-The `dummy-mock-generator` Maven Plugin is designed for creating mock objects from GDSL files and generating GDSL files from Maven scripts. It is primarily intended for testing Jenkins shared libraries but can be used in any scenario where classes are not available for mocking.
+The `dummy-mock-generator` Maven Plugin is designed for creating mock objects from GDSL files and generating GDSL files from a groovy scripts. It is primarily intended for testing Jenkins shared libraries but can be used in any scenario where classes are not available for mocking.
 
 ## Features
 
