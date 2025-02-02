@@ -42,7 +42,8 @@ If some jenkins steps are missing in the file, you can add them manually to the 
 
 ## Usage
 Jenkins Global variables are called using  fileName.metodName reference. The file is compiled as a class with the same name, so when called outside Jenkins, it is assumed that the method is static. Therefore, it is necessary to dynamically add a static method to the class and then add the call to the mocked method within it.
-See [example of groovy Spock mock](src/it/simple-it/test/groovy/CommonSpec.groovy)    
+- [Example of groovy Spock mock which test global variable](src/it/simple-it/test/groovy/CommonSpec.groovy)
+- [Example of a test that tests a class where Jenkins pipeline logic is implemented.](src/it/simple-it/test/groovy/CommonSpec.groovy)
 
 
 
@@ -51,7 +52,8 @@ See [example of groovy Spock mock](src/it/simple-it/test/groovy/CommonSpec.groov
 ```shell
 mvn clean verify -Pintegration-test
 ```
-### Release to sontype central
+### Release to sontype central locally
 ```shell
 mvn clean release:prepare release:perform -Prelease -Pgpg-maven-central
 ```
+

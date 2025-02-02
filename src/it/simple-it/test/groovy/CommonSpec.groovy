@@ -2,7 +2,7 @@ import org.example.it.mocks.MyLogMock
 import spock.lang.Specification
 
 class CommonSpec extends Specification {
-    def "example test using generated MyLogMock and verifies if method myLog.info was called and println in mock called"() {
+    def "example test of vars/common using generated MyLogMock and verifies if method myLog.info and println in mock called were called"() {
         given:
         def myLogMock = GroovySpy(MyLogMock)
         def myLogClass = Class.forName('myLog')

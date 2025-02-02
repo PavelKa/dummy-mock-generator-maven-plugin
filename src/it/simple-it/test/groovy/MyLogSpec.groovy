@@ -3,11 +3,11 @@ import spock.lang.Specification
 
 class MyLogSpec extends Specification {
     //* Test for myCommon class which represent Jenkins global variable
-    def "example test which mocks echo and test if echo was called within global variable method "() {
+    def "test that tests a global variable vars_myLog and validates if the echo method was called"() {
         given:
         def myEchoMock = GroovySpy(EchoMock)
         def myLogClass = Class.forName('myLog')
-        def logToTest = myLogClass.constructors[0].newInstance()
+        def logToTest = myLogClass.getDeclaredConstructor().newInstance()
         logToTest.metaClass.echo = myEchoMock.&call
         when:
         logToTest.info('Log message')
