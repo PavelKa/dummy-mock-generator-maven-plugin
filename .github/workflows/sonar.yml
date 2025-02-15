@@ -5,6 +5,7 @@ on:
       - main
   pull_request:
     types: [opened, synchronize, reopened]
+run-name: Sonar  @${{ github.actor }}  ${{ github.event.head_commit.message }}
 jobs:
   build:
     name: Build and analyze
