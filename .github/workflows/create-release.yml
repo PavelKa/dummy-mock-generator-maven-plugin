@@ -60,4 +60,5 @@ jobs:
             Release version ${{ env.MY_RELEASE_VERSION }}
           draft: false
           prerelease: false
-
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
