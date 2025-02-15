@@ -154,7 +154,7 @@
 
     <profiles>
         <profile>
-            <id>release-prepare</id>
+            <id>release-prepare-perform</id>
             <build>
                 <plugins>
                     <plugin>
@@ -195,14 +195,6 @@
                             </execution>
                         </executions>
                     </plugin>
-
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>publish-to-sonatype</id>
-            <build>
-                <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
@@ -235,6 +227,7 @@
                 </plugins>
             </build>
         </profile>
+
         <profile>
             <id>integration-test</id>
             <build>

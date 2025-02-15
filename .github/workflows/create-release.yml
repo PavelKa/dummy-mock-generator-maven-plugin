@@ -34,7 +34,7 @@ jobs:
           echo "<settings>
                   <servers>
                     <server>
-                      <id>ossrh</id>
+                      <id>central</id>
                       <username>${{ secrets.OSSRH_USERNAME }}</username>
                       <password>${{ secrets.OSSRH_PASSWORD }}</password>
                     </server>
@@ -51,7 +51,7 @@ jobs:
                 </settings>" > ~/.m2/settings.xml
 
       - name: Prepare and perform release
-        run: mvn -B clean release:prepare release:perform -Prelease -Pgpg-maven-central
+        run:  mvn -B clean release:prepare release:perform -P release-prepare-perform -Pintegration-test
         env:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
 
@@ -59,10 +59,6 @@ jobs:
         id: get_version
         run: echo "::set-output name=VERSION::$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)"
 
-      - name: Tag the release
-        run: |
-          git tag -a v${{ steps.get_version.outputs.VERSION }} -m "Release version ${{ steps.get_version.outputs.VERSION }}"
-          git push origin v${{ steps.get_version.outputs.VERSION }}
 
       - name: Push changes
         run: |
