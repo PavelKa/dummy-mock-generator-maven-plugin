@@ -34,8 +34,9 @@ jobs:
 
       - name: Prepare and perform release
         run: |
+          echo "MY_RELEASE_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout | sed s/-SNAPSHOT//)" >> "$GITHUB_ENV"
           mvn -B clean release:prepare -Pintegration-test
-          echo "MY_RELEASE_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)" >> "$GITHUB_ENV"
+          
 
           mvn -B release:perform -P release-prepare-perform
         env:
