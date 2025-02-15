@@ -46,14 +46,14 @@ jobs:
         run: cat target/it/simple-it/build.log
 
 
-#      - name: Create GitHub release
-#        uses: actions/create-release@v1.1.4
-#        with:
-#          tag_name: ${{ env.MY_RELEASE_VERSION }}
-#          release_name: Release ${{ env.MY_RELEASE_VERSION }}
-#          body: |
-#            Release version ${{ env.MY_RELEASE_VERSION }}
-#          draft: false
-#          prerelease: false
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create GitHub release
+        uses: actions/create-release@v1.1.4
+        with:
+          tag_name: v${{ env.MY_RELEASE_VERSION }}
+          release_name: Release ${{ env.MY_RELEASE_VERSION }}
+          body: |
+            Release version ${{ env.MY_RELEASE_VERSION }}
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
