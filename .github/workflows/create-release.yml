@@ -38,6 +38,9 @@ jobs:
         id: get_version
         run: echo "::set-output name=VERSION::$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)"
 
+      - name: Display file contents
+        if: always()
+        run: cat target/it/simple-it/build.log
 
       - name: Push changes
         run: |

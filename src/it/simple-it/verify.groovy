@@ -1,5 +1,3 @@
-File file = new File(basedir,'build.log')
-System.out.println(file.text)
 File gs = new File(basedir, "target/generated-test-sources")
-System.out.println("gs.isDirectory()")
+println("gs.isDirectory()")
 assert gs.isDirectory()
