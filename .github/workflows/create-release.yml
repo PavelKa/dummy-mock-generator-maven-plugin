@@ -20,14 +20,6 @@ jobs:
           distribution: 'temurin'
           java-version: '11'
 
-      - name: Set up GPG
-        run: |
-          echo "${{ secrets.GPG_PRIVATE_KEY }}" | gpg --batch --import
-          echo "default-key ${GPG_KEY_ID}" >> ~/.gnupg/gpg.conf
-          echo "pinentry-mode loopback" >> ~/.gnupg/gpg.conf
-        env:
-          GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
-          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
 
       - name: Set up Maven settings
         run: |
