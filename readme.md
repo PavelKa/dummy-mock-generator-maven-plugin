@@ -48,9 +48,9 @@ Jenkins Global variables are called using fileName.metodName reference. The file
 name, so when called outside Jenkins, it is assumed that the method is static. Therefore, it is necessary to dynamically
 add a static method to the class and then add the call to the mocked method within it.
 
-- [Example of groovy Spock mock which test global variable](src/it/simple-it/test/groovy/CommonSpec.groovy)
-- [Example of a test that tests a class where Jenkins pipeline logic is implemented.](src/it/simple-it/test/groovy/CommonSpec.groovy)
-
+- [Jenkisn global varaible vars/common example test](src/it/simple-it/test/groovy/CommonSpec.groovy)
+- [Example of a test for vars/myLog Jenkins global variable](src/it/simple-it/test/groovy/MyLogSpec.groovy) 
+- [Example of a test](src/it/simple-it/test/groovy/org/example/jobs/it/Job1Spec.groovy) for a  [Jenkins library class](https://www.jenkins.io/doc/book/pipeline/shared-libraries/#accessing-steps)
 
 
 ## Development of the plugin

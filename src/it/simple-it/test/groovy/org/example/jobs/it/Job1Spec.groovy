@@ -3,6 +3,9 @@ package org.example.jobs.it
 import org.example.it.mocks.MyLogMock
 import spock.lang.Specification
 
+/**
+ * Example of test for Jenkins library class Job1
+ */
 class Job1Spec extends Specification {
     Job1 job1ToTest
     MyLogMock myLogMock
@@ -14,7 +17,7 @@ class Job1Spec extends Specification {
 
     }
 
-    def "test readDUs"() {
+    def "test log called with correct parameter"() {
         when:
         job1ToTest.run()
         then:

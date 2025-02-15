@@ -1,8 +1,11 @@
 import org.example.it.mocks.MyLogMock
 import spock.lang.Specification
 
+/**
+ * Global varaible vars/common example test
+ */
 class CommonSpec extends Specification {
-    def "example test of vars/common using generated MyLogMock and verifies if method myLog.info and println in mock called were called"() {
+    def "use generated MyLogMock and verifies if method myLog.info and println in the mock were called"() {
         given:
         def myLogMock = GroovySpy(MyLogMock)
         def myLogClass = Class.forName('myLog')
