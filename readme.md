@@ -54,7 +54,7 @@ add a static method to the class and then add the call to the mocked method with
 
 
 ## Development of the plugin
-### Run test insluding integration tests placed in srt/it/simple-it
+### Run test including integration tests placed in srt/it/simple-it
 ```shell
 mvn clean verify -Pintegration-test
 ```
