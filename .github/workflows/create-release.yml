@@ -26,6 +26,10 @@ jobs:
           gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }} # Value of the GPG private key to import
           gpg-passphrase: MAVEN_GPG_PASSPHRASE # env variable for GPG private key passphrase
 
+      - name: Set up Git
+        run: |
+          git config --global user.name "${{ github.actor }}"
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
 
       - name: Prepare and perform release
         run:  mvn -B clean release:prepare release:perform -P release-prepare-perform -Pintegration-test
@@ -45,6 +49,9 @@ jobs:
       - name: Push changes
         run: |
           git push origin main
+
+
+
 
       - name: Create GitHub release
         uses: actions/create-release@v1
