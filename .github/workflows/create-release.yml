@@ -1,0 +1,81 @@
+name: Manual Release
+
+on:
+  workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          ref: main
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '11'
+
+      - name: Set up GPG
+        run: |
+          echo "${{ secrets.GPG_PRIVATE_KEY }}" | gpg --batch --import
+          echo "default-key ${GPG_KEY_ID}" >> ~/.gnupg/gpg.conf
+          echo "pinentry-mode loopback" >> ~/.gnupg/gpg.conf
+        env:
+          GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
+          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+
+      - name: Set up Maven settings
+        run: |
+          mkdir -p ~/.m2
+          echo "<settings>
+                  <servers>
+                    <server>
+                      <id>ossrh</id>
+                      <username>${{ secrets.OSSRH_USERNAME }}</username>
+                      <password>${{ secrets.OSSRH_PASSWORD }}</password>
+                    </server>
+                  </servers>
+                  <profiles>
+                    <profile>
+                      <id>gpg-maven-central</id>
+                      <properties>
+                        <gpg.keyname>${{ secrets.GPG_KEY_ID }}</gpg.keyname>
+                        <gpg.passphrase>${{ secrets.GPG_PASSPHRASE }}</gpg.passphrase>
+                      </properties>
+                    </profile>
+                  </profiles>
+                </settings>" > ~/.m2/settings.xml
+
+      - name: Prepare and perform release
+        run: mvn -B clean release:prepare release:perform -Prelease -Pgpg-maven-central
+        env:
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+
+      - name: Get version from pom.xml
+        id: get_version
+        run: echo "::set-output name=VERSION::$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)"
+
+      - name: Tag the release
+        run: |
+          git tag -a v${{ steps.get_version.outputs.VERSION }} -m "Release version ${{ steps.get_version.outputs.VERSION }}"
+          git push origin v${{ steps.get_version.outputs.VERSION }}
+
+      - name: Push changes
+        run: |
+          git push origin main
+
+      - name: Create GitHub release
+        uses: actions/create-release@v1
+        with:
+          tag_name: v${{ steps.get_version.outputs.VERSION }}
+          release_name: Release ${{ steps.get_version.outputs.VERSION }}
+          body: |
+            Release version ${{ steps.get_version.outputs.VERSION }}
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
