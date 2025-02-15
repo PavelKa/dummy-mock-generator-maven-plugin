@@ -35,10 +35,7 @@ jobs:
       - name: Prepare and perform release
         run: |
           echo "MY_RELEASE_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout | sed s/-SNAPSHOT//)" >> "$GITHUB_ENV"
-          mvn -B clean release:prepare -Pintegration-test
-          
-
-          mvn -B release:perform -P release-prepare-perform
+          mvn -B clean release:prepare release:perform -P release-prepare-perform -Pintegration-test
         env:
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_TOKEN: ${{ secrets.OSSRH_PASSWORD }}
@@ -48,18 +45,15 @@ jobs:
         if: failure()
         run: cat target/it/simple-it/build.log
 
-      - name: Push changes
-        run: |
-          git push origin main
 
-      - name: Create GitHub release
-        uses: actions/create-release@v1.1.4
-        with:
-          tag_name: ${{ env.MY_RELEASE_VERSION }}
-          release_name: Release ${{ env.MY_RELEASE_VERSION }}
-          body: |
-            Release version ${{ env.MY_RELEASE_VERSION }}
-          draft: false
-          prerelease: false
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#      - name: Create GitHub release
+#        uses: actions/create-release@v1.1.4
+#        with:
+#          tag_name: ${{ env.MY_RELEASE_VERSION }}
+#          release_name: Release ${{ env.MY_RELEASE_VERSION }}
+#          body: |
+#            Release version ${{ env.MY_RELEASE_VERSION }}
+#          draft: false
+#          prerelease: false
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
