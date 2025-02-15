@@ -33,20 +33,17 @@ jobs:
           git config --global user.email "${{ github.actor }}@users.noreply.github.com"
 
       - name: Prepare and perform release
-        run:  mvn -B clean release:prepare release:perform -P release-prepare-perform -Pintegration-test
+        run: |
+          mvn -B clean release:prepare -Pintegration-test
+          echo "::set-output name=VERSION::$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)"
+          mvn -B release:perform -P release-prepare-perform
         env:
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_TOKEN: ${{ secrets.OSSRH_PASSWORD }}
           MAVEN_GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
 
-
-
-      - name: Get version from pom.xml
-        id: get_version
-        run: echo "::set-output name=VERSION::$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)"
-
-      - name: Display file contents
-        if: always()
+      - name: Display integration test log
+        if: failure()
         run: cat target/it/simple-it/build.log
 
       - name: Push changes
