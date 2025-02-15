@@ -2,7 +2,8 @@ name: Manual Release
 
 on:
   workflow_dispatch:
-
+permissions:
+  contents: write
 run-name: Manual release  @${{ github.actor }}  ${{ github.event.head_commit.message }}
 jobs:
   release:
@@ -37,8 +38,7 @@ jobs:
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_TOKEN: ${{ secrets.OSSRH_PASSWORD }}
           MAVEN_GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
-          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
-
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
       - name: Get version from pom.xml
@@ -52,7 +52,8 @@ jobs:
       - name: Push changes
         run: |
           git push origin main
-
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
 
