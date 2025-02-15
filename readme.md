@@ -58,30 +58,7 @@ add a static method to the class and then add the call to the mocked method with
 ```shell
 mvn clean verify -Pintegration-test
 ```
-### Release to sontype central locally
-
-Prerequisites:
-
-- Set up the GPG key and the passphrase in the `settings.xml` file.
-
-```settings.xml
-<profile>
-            <id>gpg-maven-central</id>
-            <properties>
-                <gpg.keyname>${MY_GPG_KEY_ID}</gpg.keyname>
-                <gpg.passphrase>${MY_GPG_SECRET}</gpg.passphrase>
-            </properties>
-        </profile>
-```
-
-- to setup the MY_GPG_KEY_ID and MY_GPG_SECRET You can use the following command:
- ```shell
-export MY_GPG_KEY_ID=A..9
-export MY_GPG_SECRET=yourpassphrase
-
-```
-- to run release  locally use the following command:
-```shell
-mvn -B clean release:prepare release:perform -Prelease -Pgpg-maven-central
-```
+### Release to sonatype 
+Release process is automatized by github workflow [create-release.yml](.github/workflows/create-release.yml)
+Workflow should be invoked manually when the release is needed and everything in branch main is ready.
 
